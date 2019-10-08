@@ -9,6 +9,8 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*; \
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 
+RUN dnf clean all && dnf install -y nosync && dnf clean all && echo '/usr/lib64/nosync/nosync.so' > /etc/ld.so.preload
+
 RUN echo 'fastestmirror=true' >> /etc/dnf/dnf.conf
 
 RUN dnf clean all && \
